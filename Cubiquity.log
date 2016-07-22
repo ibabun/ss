@@ -1,0 +1,26 @@
+********************************************************************************
+*                             Initializing Cubiquity                           *
+********************************************************************************
+[22:12:55, Info   ]: Creating voxel database from 'M:/dev/ss/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/VoxeliensColoredCubes.vdb'
+[22:12:58, Info   ]: Creating voxel database from 'M:/dev/ss/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/VoxeliensColoredCubes.vdb'
+[22:13:11, Info   ]: Creating voxel database from 'M:/dev/ss/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/VoxeliensColoredCubes.vdb'
+[22:13:12, Info   ]: Creating voxel database from 'M:/dev/ss/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/VoxeliensTerrain.vdb'
+[22:13:40, Info   ]: Creating voxel database from 'M:/dev/ss/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
+[22:13:40, Info   ]: Creating voxel database from 'M:/dev/ss/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
+[22:13:51, Info   ]: Creating voxel database from 'M:/dev/ss/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
+[22:13:51, Info   ]: Creating voxel database from 'M:/dev/ss/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
+[22:13:54, Info   ]: Creating voxel database from 'M:/dev/ss/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
+[22:13:54, Info   ]: Creating voxel database from 'M:/dev/ss/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Planet.vdb'
+[22:13:58, Info   ]: Creating voxel database from 'M:/dev/ss/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/Tests/SmallSphere.vdb'
+[22:14:19, Info   ]: Creating voxel database from 'M:/dev/ss/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/VoxeliensColoredCubes.vdb'
+[22:14:32, Info   ]: Creating voxel database from 'M:/dev/ss/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/VoxeliensColoredCubes.vdb'
+[22:14:51, Info   ]: Resizing compressed data buffer to 144307bytes. This should only happen once
+[22:14:51, Info   ]: Creating voxel database from 'M:/dev/ss/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/VoxeliensColoredCubes.vdb'
+[22:15:02, Info   ]: Creating voxel database from 'M:/dev/ss/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/VoxeliensColoredCubes.vdb'
+[22:15:06, Info   ]: Resizing compressed data buffer to 144307bytes. This should only happen once
+[22:15:06, Info   ]: Creating voxel database from 'M:/dev/ss/Assets/StreamingAssets/Cubiquity/VoxelDatabases/Examples/VoxeliensColoredCubes.vdb'
+[22:17:36, Info   ]: Creating empty voxel database as 'C:/Users/hypersh/AppData/Local/Temp/DefaultCompany/ss/00D51873.vdb'
+[22:17:43, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
+[22:17:43, Info   ]: Creating empty voxel database as 'C:/Users/hypersh/AppData/Local/Temp/DefaultCompany/ss/50ADF93D.vdb'
+[22:18:00, Info   ]: Resizing compressed data buffer to 144307bytes. This should only happen once
+[22:18:00, Info   ]: Creating voxel database from 'C:/Users/hypersh/AppData/Local/Temp/DefaultCompany/ss/50ADF93D.vdb'
