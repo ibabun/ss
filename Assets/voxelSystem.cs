@@ -3,6 +3,8 @@ using System.Collections;
 
 public class voxelSystem : MonoBehaviour
 {
+    public float pressure = 0.5f;
+    public float pressureCH = 0.2f;
     public LayerMask mask = (1 << 29);
     public GameObject neighbor_Front;
     public GameObject neighbor_Right;
@@ -21,9 +23,7 @@ public class voxelSystem : MonoBehaviour
             // Debug.Log(this.name + "hit_" + hitF.collider.gameObject);
         }
 
-
-
-        //hitting front
+        //hitting right
         RaycastHit hitR;
         Vector3 right = transform.TransformDirection(Vector3.right);
         if (Physics.Raycast(transform.position, right, out hitR, 1, mask.value))
@@ -49,13 +49,81 @@ public class voxelSystem : MonoBehaviour
 
     }
 
-   public void changeVar()
+    public void changeVar()
     {
-        Destroy(neighbor_Right);
-        Destroy(neighbor_Front);
-        Destroy(neighbor_Left);
-        Destroy(neighbor_Back);
+        Invoke("changeVarGO", 0.3f);
+     }
+
+    public void changeVarGO()
+        {
+            pressure = pressureCH;
+
+        this.GetComponent<Renderer>().materials[0].color = new Color(pressure, pressure, pressure);
+       //Front_CV
+        if (neighbor_Right != null && neighbor_Right.GetComponent<voxelSystem>() != null)
+        {
+          
+
+            if (neighbor_Right.GetComponent<voxelSystem>().pressure != pressureCH) {
+            
+            neighbor_Right.gameObject.GetComponent<voxelSystem>().pressureCH = pressure;
+            neighbor_Right.gameObject.GetComponent<voxelSystem>().changeVar();
+            //pressureCH = (pressureCH + ((neighbor_Right.gameObject.GetComponent<voxelSystem>().pressure)/4));
+
+   }
+        }
+
+
+       //Right_CV
+        if (neighbor_Front != null && neighbor_Front.GetComponent<voxelSystem>() != null)
+        {
+            if (neighbor_Front.GetComponent<voxelSystem>().pressure != pressureCH)
+            {
+                neighbor_Front.gameObject.GetComponent<voxelSystem>().pressureCH = pressure;
+                neighbor_Front.gameObject.GetComponent<voxelSystem>().changeVar();
+              //  pressureCH = (pressureCH + ((neighbor_Front.gameObject.GetComponent<voxelSystem>().pressure)/4)));
+
+            }
+        }
+
+
+       //Back_CV
+        if (neighbor_Left != null && neighbor_Left.GetComponent<voxelSystem>() != null)
+        {
+            if (neighbor_Left.GetComponent<voxelSystem>().pressure != pressureCH)
+            {
+                neighbor_Left.gameObject.GetComponent<voxelSystem>().pressureCH = pressure;
+                neighbor_Left.gameObject.GetComponent<voxelSystem>().changeVar();
+              //  pressureCH = (pressureCH + ((neighbor_Left.gameObject.GetComponent<voxelSystem>().pressure)/4)));
+            }
+        }
+
+
+       //Left_CV
+        if (neighbor_Back != null && neighbor_Back.GetComponent<voxelSystem>() != null)
+        {
+            if (neighbor_Back.GetComponent<voxelSystem>().pressure != pressureCH)
+            {
+                neighbor_Back.gameObject.GetComponent<voxelSystem>().pressureCH = pressure;
+                neighbor_Back.gameObject.GetComponent<voxelSystem>().changeVar();
+             //   pressureCH = (pressureCH + ((neighbor_Back.gameObject.GetComponent<voxelSystem>().pressure)/4)));
+            }
+        }
+
+       // if (pressure != 0.5f) 
+       // {
+               
+       // }
+       
+        //
+        //
+        //
+        //
+        
+        CancelInvoke();
     }
+
+
 
     // Update is called once per frame
     void Update()
