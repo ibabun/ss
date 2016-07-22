@@ -51,12 +51,12 @@ public class voxelSystem : MonoBehaviour
 
     public void changeVar()
     {
-        Invoke("changeVarGO", 0.3f);
+        Invoke("changeVarGO", 0.1f);
      }
 
     public void changeVarGO()
         {
-            pressure = pressureCH;
+            pressure = pressureCH; 
 
         this.GetComponent<Renderer>().materials[0].color = new Color(pressure, pressure, pressure);
        //Front_CV
@@ -65,8 +65,8 @@ public class voxelSystem : MonoBehaviour
           
 
             if (neighbor_Right.GetComponent<voxelSystem>().pressure != pressureCH) {
-            
-            neighbor_Right.gameObject.GetComponent<voxelSystem>().pressureCH = pressure;
+
+                neighbor_Right.gameObject.GetComponent<voxelSystem>().pressureCH = pressure;
             neighbor_Right.gameObject.GetComponent<voxelSystem>().changeVar();
             //pressureCH = (pressureCH + ((neighbor_Right.gameObject.GetComponent<voxelSystem>().pressure)/4));
 

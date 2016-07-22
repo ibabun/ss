@@ -3,8 +3,8 @@ using System.Collections;
 
 public class voxelSystem_Dec : MonoBehaviour
 {
-    public float pressure = 0.1f;
-    public float pressureCH = 0.1f;
+    public float pressure = 0.0f;
+    public float pressureCH = 0.0f;
     public LayerMask mask = (1 << 29);
     public GameObject neighbor_Front;
     public GameObject neighbor_Right;
