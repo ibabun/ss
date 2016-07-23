@@ -3,7 +3,12 @@ using System.Collections;
 
 public class voxelSystem_Dec : MonoBehaviour
 {
-    public float pressure = 0.0f;
+    public int thisID;
+    public manageIds manageIds;
+    public GameObject manager;
+    public bool kill = false;
+    public int weight = 0;
+    public float pressure = -1.0f;
     public float pressureCH = 0.0f;
     public LayerMask mask = (1 << 29);
     public GameObject neighbor_Front;
@@ -13,13 +18,20 @@ public class voxelSystem_Dec : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        manager = GameObject.Find("manager");
+        //thisID = nextID;
+        //nextID = +1;
         //init neighbor
         //hitting front
+        thisID = manager.GetComponent<manageIds>().nextID;
+        manager.GetComponent<manageIds>().nextID = thisID + 1;
         RaycastHit hitF;
         Vector3 fwd = transform.TransformDirection(Vector3.forward);
         if (Physics.Raycast(transform.position, fwd, out hitF, 1, mask.value))
         {
             neighbor_Front = hitF.collider.gameObject;
+            hitF.collider.gameObject.GetComponent<voxelSystem>().parentID = thisID;
+            hitF.collider.gameObject.GetComponent<voxelSystem>().weight = weight + 1;
         }
 
         //hitting right
@@ -28,6 +40,8 @@ public class voxelSystem_Dec : MonoBehaviour
         if (Physics.Raycast(transform.position, right, out hitR, 1, mask.value))
         {
             neighbor_Right = hitR.collider.gameObject;
+            hitR.collider.gameObject.GetComponent<voxelSystem>().parentID = thisID;
+            hitR.collider.gameObject.GetComponent<voxelSystem>().weight = weight + 1;
         }
 
         //hitting back
@@ -36,6 +50,8 @@ public class voxelSystem_Dec : MonoBehaviour
         if (Physics.Raycast(transform.position, back, out hitB, 1, mask.value))
         {
             neighbor_Back = hitB.collider.gameObject;
+            hitB.collider.gameObject.GetComponent<voxelSystem>().parentID = thisID;
+            hitB.collider.gameObject.GetComponent<voxelSystem>().weight = weight + 1;
         }
 
         //hitting left
@@ -44,6 +60,8 @@ public class voxelSystem_Dec : MonoBehaviour
         if (Physics.Raycast(transform.position, left, out hitL, 1, mask.value))
         {
             neighbor_Left = hitL.collider.gameObject;
+            hitL.collider.gameObject.GetComponent<voxelSystem>().parentID = thisID;
+            hitL.collider.gameObject.GetComponent<voxelSystem>().weight = weight + 1;
         }
 
     }

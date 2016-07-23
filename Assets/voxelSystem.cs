@@ -3,6 +3,10 @@ using System.Collections;
 
 public class voxelSystem : MonoBehaviour
 {
+    public GameObject manager;
+    public int parentID = 0;
+    public int weight = 99999;
+    //public int indefier = 0;
     public float pressure = 1;
     public float pressureCH = 1;
     public float pressureMax = 1.0f;
@@ -27,8 +31,9 @@ public class voxelSystem : MonoBehaviour
     //timer for allow change/accses
     public float countdown = 1.0f;
     // Use this for initialization
-    void Start()
+    void Awake()
     {
+        manager = GameObject.Find("manager");
         //init neighbor
         //hitting front
         RaycastHit hitF;
@@ -77,113 +82,107 @@ public class voxelSystem : MonoBehaviour
     {
         //get Accses to neighbor's (this how we understand with neighbor is accsesing)
         this.GetComponent<Renderer>().materials[0].color = new Color(pressure, pressure, pressure);
-        //Front_CV
+        //Right_CV
         if (neighbor_Right != null && neighbor_Right.readyToChange) //&& neighbor_Right.GetComponent<voxelSystem>() != null)
         {
-            if (neighbor_Right.pressure != pressureCH && neighbor_Right.rAccses)
+            if (neighbor_Right.weight > weight)
             {
-                rFininsh = false;
-                if (neighbor_Right.pressure < pressure)
+                neighbor_Right.parentID = parentID;
+                if (neighbor_Right.pressure != pressureCH && neighbor_Right.rAccses)
                 {
+
+                    rFininsh = false;
 
                     neighbor_Right.pressureCH = pressure;
                     neighbor_Right.changeVar();
+
+
+                    neighbor_Right.lAccses = false;
                 }
-                if (neighbor_Right.pressure > pressure)
-                {
-                    neighbor_Right.pressureCH = pressure;
-                    neighbor_Right.changeVar();
-                }
-                neighbor_Right.lAccses = false;
             }
-
             if (neighbor_Right.pressureCH == pressure)
             {
-
+                neighbor_Right.weight = weight + 1;
                 rFininsh = true;
             }
 
         }
 
-        //Right_CV
+        //Front_CV
         if (neighbor_Front != null && neighbor_Front.readyToChange)//&& neighbor_Front.GetComponent<voxelSystem>() != null)
         {
-            if (neighbor_Front.pressure != pressureCH && neighbor_Front.fAccses)
+            if (neighbor_Front.weight > weight)
             {
-                fFininsh = false;
-                if (neighbor_Front.pressure < pressure)
+                neighbor_Front.parentID = parentID;
+                if (neighbor_Front.pressure != pressureCH && neighbor_Front.fAccses)
                 {
+
+                    fFininsh = false;
 
                     neighbor_Front.pressureCH = pressure;
                     neighbor_Front.changeVar();
+
+
+                    neighbor_Front.bAccses = false;
                 }
-                if (neighbor_Front.pressure > pressure)
+
+                if (neighbor_Front.pressureCH == pressure)
                 {
-                    neighbor_Front.pressureCH = pressure;
-                    neighbor_Front.changeVar();
+                    neighbor_Front.weight = weight + 1;
+                    fFininsh = true;
                 }
-
-                neighbor_Front.bAccses = false;
-            }
-
-            if (neighbor_Front.pressureCH == pressure)
-            {
-                fFininsh = true;
-            }
-
-        }
-
-
-        //Back_CV
-        if (neighbor_Left != null && neighbor_Left.readyToChange)//&& neighbor_Left.GetComponent<voxelSystem>() != null)
-        {
-            if (neighbor_Left.pressure != pressureCH && neighbor_Left.lAccses)
-            {
-                lFininsh = false;
-                if (neighbor_Left.pressure < pressure)
-                {
-                    neighbor_Left.pressureCH = pressure;
-                    neighbor_Left.changeVar();
-                }
-                if (neighbor_Left.pressure > pressure)
-                {
-                    neighbor_Left.pressureCH = pressure;
-                    neighbor_Left.changeVar();
-                }
-            }
-
-            neighbor_Left.rAccses = false;
-
-            if (neighbor_Left.pressureCH == pressure)
-            {
-                lFininsh = true;
             }
         }
 
 
         //Left_CV
+        if (neighbor_Left != null && neighbor_Left.readyToChange)//&& neighbor_Left.GetComponent<voxelSystem>() != null)
+        {
+            if (neighbor_Left.weight > weight)
+            {
+                neighbor_Left.parentID = parentID;
+                if (neighbor_Left.pressure != pressureCH && neighbor_Left.lAccses)
+                {
+                    lFininsh = false;
+
+                    neighbor_Left.pressureCH = pressure;
+                    neighbor_Left.changeVar();
+
+                }
+
+                neighbor_Left.rAccses = false;
+
+                if (neighbor_Left.pressureCH == pressure)
+                {
+                    neighbor_Left.weight = weight + 1;
+                    lFininsh = true;
+                }
+            }
+        }
+
+
+        //Back_CV
         if (neighbor_Back != null && neighbor_Back.readyToChange)//&& neighbor_Back.GetComponent<voxelSystem>() != null)
         {
             if (neighbor_Back.pressure != pressureCH && neighbor_Back.bAccses)
             {
-                bFininsh = false;
-                if (neighbor_Back.pressure < pressure)
+                if (neighbor_Back.weight > weight)
                 {
+                    neighbor_Back.parentID = parentID;
+                    bFininsh = false;
+
                     neighbor_Back.pressureCH = pressure;
                     neighbor_Back.changeVar();
+
                 }
-                if (neighbor_Back.pressure > pressure)
+
+                neighbor_Back.fAccses = false;
+
+                if (neighbor_Back.pressureCH == pressure)
                 {
-                    neighbor_Back.pressureCH = pressure;
-                    neighbor_Back.changeVar();
+                    neighbor_Back.weight = weight + 1;
+                    bFininsh = true;
                 }
-            }
-
-            neighbor_Back.fAccses = false;
-
-            if (neighbor_Back.pressureCH == pressure)
-            {
-                bFininsh = true;
             }
 
         }
