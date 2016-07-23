@@ -20,7 +20,6 @@ public class voxelSystem_Dec : MonoBehaviour
         if (Physics.Raycast(transform.position, fwd, out hitF, 1, mask.value))
         {
             neighbor_Front = hitF.collider.gameObject;
-            // Debug.Log(this.name + "hit_" + hitF.collider.gameObject);
         }
 
         //hitting right
@@ -49,79 +48,48 @@ public class voxelSystem_Dec : MonoBehaviour
 
     }
     void Update()
-   //public void changeVar()
     {
-        //pressure = pressureCH;
 
-       //Front_CV
         if (neighbor_Right != null)
         {
             if (neighbor_Right.GetComponent<voxelSystem>().pressure != pressure)
             {
             neighbor_Right.gameObject.GetComponent<voxelSystem>().pressureCH = pressure;
             neighbor_Right.gameObject.GetComponent<voxelSystem>().changeVar();
-            //neighbor_Right.GetComponent<Renderer>().material.color = new Color(pressure, pressure, pressure);  
-        }
-            //Destroy(neighbor_Right);
-            
         }
 
+        }
 
-       //Right_CV
         if (neighbor_Front != null)
         {
             if (neighbor_Front.GetComponent<voxelSystem>().pressure != pressure)
             {
                 neighbor_Front.gameObject.GetComponent<voxelSystem>().pressureCH = pressure;
                 neighbor_Front.gameObject.GetComponent<voxelSystem>().changeVar();
-                //neighbor_Front.GetComponent<Renderer>().material.color = new Color(pressure, pressure, pressure);
             }
-           //Destroy(neighbor_Front);
-            
+
         }
 
-
-       //Back_CV
         if (neighbor_Left != null)
         {
             if (neighbor_Left.GetComponent<voxelSystem>().pressure != pressure)
             {
                 neighbor_Left.gameObject.GetComponent<voxelSystem>().pressureCH = pressure;
                 neighbor_Left.gameObject.GetComponent<voxelSystem>().changeVar();
-                //neighbor_Left.GetComponent<Renderer>().material.color = new Color(pressure, pressure, pressure);
             }
-            //Destroy(neighbor_Left);
+
             
         }
-
-
-       //Left_CV
         if (neighbor_Back != null)
         {
             if (neighbor_Back.GetComponent<voxelSystem>().pressure != pressure)
             {
                 neighbor_Back.gameObject.GetComponent<voxelSystem>().pressureCH = pressure;
                 neighbor_Back.gameObject.GetComponent<voxelSystem>().changeVar();
-               // neighbor_Back.GetComponent<Renderer>().material.color = new Color(pressure, pressure, pressure);
-
-                //Destroy(neighbor_Back);
             }
         }
 
-        //if (pressure != pressureCH) 
-        //{
-        //    this.GetComponent<Renderer>().material.color = new Color(pressure, 0.3f, 0.3f);
-        //}
-       
-        //
-        //
-        //
-        //
+
     }
 
-    // Update is called once per frame
-  //  void Update()
-   // {
-
-    //}
 }
