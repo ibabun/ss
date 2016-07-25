@@ -5,6 +5,7 @@ public class voxelSystem : MonoBehaviour
 {
     public GameObject manager;
     public int parentID = 0;
+    public bool parentIsalive = false;
     public int weight = 99999;
     //public int indefier = 0;
     public float pressure = 1;
@@ -73,6 +74,7 @@ public class voxelSystem : MonoBehaviour
     public void changeVar()
     {
         pressure = pressureCH;
+        parentIsalive = true;
         readyToChange = false;
         Invoke("changeVarGO", 0.2f);
         Invoke("changeVarGOChange", 2f);
@@ -106,6 +108,18 @@ public class voxelSystem : MonoBehaviour
                 rFininsh = true;
             }
 
+            if (neighbor_Right.parentID == parentID)
+            {
+                if (neighbor_Right.weight < weight)
+                {
+                    neighbor_Right.weight = 99999;
+                    parentID = 0;
+                    neighbor_Right.parentIsalive = false;
+                    neighbor_Right.changeVar();
+                }
+            }
+
+
         }
 
         //Front_CV
@@ -130,6 +144,16 @@ public class voxelSystem : MonoBehaviour
                 {
                     neighbor_Front.weight = weight + 1;
                     fFininsh = true;
+                }
+            }
+            if (neighbor_Front.parentID == parentID)
+            {
+                if (neighbor_Front.weight < weight)
+                {
+                    neighbor_Front.weight = 99999;
+                    parentID = 0;
+                    neighbor_Front.parentIsalive = false;
+                    neighbor_Front.changeVar();
                 }
             }
         }
@@ -158,6 +182,16 @@ public class voxelSystem : MonoBehaviour
                     lFininsh = true;
                 }
             }
+            if (neighbor_Left.parentID == parentID) 
+            {
+                if(neighbor_Left.weight < weight)
+                {
+                neighbor_Left.weight = 99999;
+                parentID = 0;
+                neighbor_Left.parentIsalive = false;
+                neighbor_Left.changeVar();
+            }
+            }
         }
 
 
@@ -185,6 +219,16 @@ public class voxelSystem : MonoBehaviour
                 }
             }
 
+            if (neighbor_Back.parentID == parentID)
+            {
+                if (neighbor_Back.weight < weight)
+                {
+                neighbor_Back.weight = 99999;
+                parentID = 0;
+                neighbor_Back.parentIsalive = false;
+                neighbor_Back.changeVar();
+            }
+            }
         }
         //if (fFininsh && rFininsh && bFininsh && lFininsh && readyToChange)
         //{

@@ -19,12 +19,9 @@ public class voxelSystem_Dec : MonoBehaviour
     void Start()
     {
         manager = GameObject.Find("manager");
-        //thisID = nextID;
-        //nextID = +1;
-        //init neighbor
-        //hitting front
+
         thisID = manager.GetComponent<manageIds>().nextID;
-        manager.GetComponent<manageIds>().nextID = thisID + 1;
+        manager.GetComponent<manageIds>().nextID ++;
         RaycastHit hitF;
         Vector3 fwd = transform.TransformDirection(Vector3.forward);
         if (Physics.Raycast(transform.position, fwd, out hitF, 1, mask.value))
