@@ -17,7 +17,7 @@ public class engineNucleus : MonoBehaviour {
         //Vapor = Mass/(Time.deltaTime/100);
         qubicRadius = (FuelE / FuelE / FuelE);
         Mass = (qubicRadius*qubicRadius*qubicRadius)*FuelE;
-        test = (Mathf.Pow(9f, (1f/3f)));
+        test = Mathf.Pow(8f, (1f/3));
         Debug.Log(test);
     }
 }
